@@ -1,40 +1,24 @@
 import argparse
 import click
 
-from utils import install_jenkins
+from utils import install_jenkins, delete_jenkins
 
 
 @click.command()
-@click.option(
-    
-)
-def jenkins_install():
+def install():
+    install_jenkins()
+
+
+@click.command()
+def create_users():
     pass
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-i", "--install", 
-        help=""
-    )
-    parser.add_argument(
-        "-s", "--start", 
-        help="", 
-        type=str, 
-        default="JENKINS_PASSWORD=admin"
-    )
-    parser.add_argument(
-        "-v", "--verify", 
-        help=""
-    )
-    parser.add_argument(
-        "-d", "--delete", 
-        help=""
-    )
-    
-    args = parser.parse_args()
+@click.command()
+def verify():
+    pass
 
 
-if __name__ == "__main__":
-    main()
+@click.command()
+def uninstall():
+    delete_jenkins()
