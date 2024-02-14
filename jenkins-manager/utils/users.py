@@ -1,5 +1,7 @@
 import jenkins
 
+from utils import logger
+
 
 def create_user(
         admin_password: str, 
@@ -11,11 +13,16 @@ def create_user(
         username='admin', 
         password=admin_password
     )
-    server.create_user(
-        username, 
-        user_password, 
-        "User Resu",
-    )
+    try:
+        server.create_user(
+            username, 
+            user_password, 
+            "User Resu",
+        )
+    except Exception as err:
+        logger.error(f"Can not add user with username: {username}.")
+        return
+    logger.info(f"User with username: {username} successfully added.")
 
 
 def create_guest(    
@@ -28,8 +35,13 @@ def create_guest(
         username='admin', 
         password=admin_password
     )
-    server.create_guest(
-        username, 
-        user_password, 
-        "Guest Tseug",
-    )
+    try:
+        server.create_guest(
+            username, 
+            user_password, 
+            "Guest Tseug",
+        )
+    except Exception as err:
+        logger.error(f"Can not add user with username: {username}.")
+        return
+    logger.info(f"User with username: {username} successfully added.")
