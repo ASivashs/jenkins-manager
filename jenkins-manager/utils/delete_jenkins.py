@@ -16,7 +16,7 @@ def delete_jenkins() -> bool:
         try:
             subprocess.run(
                 [
-                    "sudo", "apt-get", "remove" "--purge", "jenkins",
+                    "sudo", "apt-get", "remove" "--purge", "-y", "jenkins",
                 ]
             )
         except Exception as err:
@@ -37,3 +37,7 @@ def delete_jenkins() -> bool:
     
     if distr in RPM_DISTRO:
         pass
+
+
+if __name__ == "__main__":
+    delete_jenkins()
