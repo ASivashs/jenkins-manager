@@ -16,7 +16,7 @@ def delete_jenkins() -> bool:
         try:
             subprocess.run(
                 [
-                    "sudo", "apt-get", "remove" "--purge", "-y", "jenkins",
+                    "sudo", "apt-get", "remove", "--purge", "-y", "jenkins",
                 ]
             )
         except Exception as err:
