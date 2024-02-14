@@ -91,7 +91,3 @@ def installing_windows():
 
 def installing_macos():
     pass
-
-
-if __name__ == "__main__":
-    install_jenkins()

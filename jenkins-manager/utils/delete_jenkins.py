@@ -37,7 +37,3 @@ def delete_jenkins() -> bool:
     
     if distr in RPM_DISTRO:
         pass
-
-
-if __name__ == "__main__":
-    delete_jenkins()
