@@ -7,8 +7,8 @@ from utils import DEB_DISTRO, RPM_DISTRO
 
 # from logs import logger
 # from settings import DEB_DISTRO, RPM_DISTRO
-    
-    
+
+
 def delete_jenkins() -> bool:
     distr = distro.id()
         
