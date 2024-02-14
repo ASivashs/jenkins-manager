@@ -8,11 +8,11 @@ def verify_users(users: list | set | tuple=("admin", "user", "guest")):
     dir = Path("/var/lib/jenkins/users")
     verified_users = []
     for entry in diriterdir:
-        if current_user:=str(entry).lower().split("_")[0] in users:
-            logger.info(f"User {current_user} exist and verified.")
-            verified_users.append(current_user)
+        if entry in users:
+            logger.info(f"User {entry} exist and verified.")
+            verified_users.append(entry)
         else:
-            logger.warning(f"User {current_user} does not exist.")
+            logger.warning(f"User {entry} does not exist.")
     if verified_users == users:
         logger.info("Verified successfully, all secure politics in good condition.")
     else:
