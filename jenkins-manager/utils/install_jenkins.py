@@ -3,9 +3,15 @@ import distro
 import platform
 import subprocess
 
-from utils import logger, check_java
+from utils import logger
+from utils import check_java
 from utils import DEB_DISTRO, RPM_DISTRO, JENKINS_GPG, JENKINS_KEYRINGS_PATH, \
     LTS_JENKINS_BINARY, LTS_JENKINS_KEY
+
+# from logs import logger
+# from install_java import check_java
+# from settings import DEB_DISTRO, RPM_DISTRO, JENKINS_GPG, JENKINS_KEYRINGS_PATH, \
+#     LTS_JENKINS_BINARY, LTS_JENKINS_KEY
 
 
 def install_jenkins() -> bool:
@@ -85,3 +91,7 @@ def installing_windows():
 
 def installing_macos():
     pass
+
+
+if __name__ == "__main__":
+    install_jenkins()

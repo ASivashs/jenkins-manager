@@ -5,6 +5,9 @@ import subprocess
 from utils import logger
 from utils import DEB_DISTRO, RPM_DISTRO
 
+# from logs import logger
+# from settings import DEB_DISTRO, RPM_DISTRO
+
 
 def check_java(os_name: str) -> bool:
     if os_name == "Linux":
