@@ -75,25 +75,6 @@ def installing_jenkins_linux(release: str="lts") -> bool:
             logger.error(f"Something went wrong: {err}")
             return False
         logger.info("Jenkins installed")
-        
-        try:
-            subprocess.run(
-                [
-                    "sudo", "rm", "-rf", "/var/lib/jenkins/users",
-                ]
-            )
-        except Exception as err:
-            logger.error(f"Something went wrong: {err}")
-            return False
-        try:
-            subprocess.run(
-                [
-                    "sudo", "cp", "-r", "users/", "/var/lib/jenkins/users",
-                ]
-            )
-        except Exception as err:
-            logger.error(f"Something went wrong: {err}")
-            return False
         return True
     
     if distr in RPM_DISTRO:

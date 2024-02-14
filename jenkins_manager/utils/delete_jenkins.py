@@ -13,15 +13,6 @@ def delete_jenkins() -> bool:
         try:
             subprocess.run(
                 [
-                    "sudo", "cp", "-r", "/var/lib/jenkins/users", ".",
-                ]
-            )
-        except Exception as err:
-            logger.error(f"Something went wrong: {err}")
-            return False
-        try:
-            subprocess.run(
-                [
                     "sudo", "apt-get", "remove", "--purge", "-y", "jenkins",
                 ]
             )
@@ -29,17 +20,17 @@ def delete_jenkins() -> bool:
             logger.error(f"Something went wrong: {err}")
             return False
         logger.info("Jenkins uninstalled.")
-        # try:
-        #     subprocess.run(
-        #         [
-        #             "sudo", "rm", "-rf", "/var/lib/jenkins",
-        #         ]
-        #     )
-        # except Exception as err:
-        #     logger.error(f"Something went wrong: {err}")
-        #     return False
-        # logger.info("Jenkins directory removed.")
-        # return True
+        try:
+            subprocess.run(
+                [
+                    "sudo", "rm", "-rf", "/var/lib/jenkins",
+                ]
+            )
+        except Exception as err:
+            logger.error(f"Something went wrong: {err}")
+            return False
+        logger.info("Jenkins directory removed.")
+        return True
     
     if distr in RPM_DISTRO:
         pass
