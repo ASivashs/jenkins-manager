@@ -13,7 +13,7 @@ def verify_users(users: list | set | tuple=("admin", "user", "guest")):
             verified_users.append(entry)
         else:
             logger.warning(f"User {entry} does not exist.")
-    if verified_users == users:
+    if len(verified_users) == len(users):
         logger.info("Verified successfully, all secure politics in good condition.")
     else:
         logger.warning("Verified successfully, some users does not exist.")
