@@ -1,5 +1,3 @@
-import jenkins
-
 from pathlib import Path
 
 from utils import logger

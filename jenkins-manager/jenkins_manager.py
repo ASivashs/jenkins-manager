@@ -1,7 +1,7 @@
-import argparse
 import click
 
-from utils import install_jenkins, delete_jenkins
+from utils import install_jenkins, delete_jenkins, verify_users, \
+    create_guest, create_user
 
 
 @click.command()
@@ -16,7 +16,7 @@ def create_users():
 
 @click.command()
 def verify():
-    pass
+    verify_users()
 
 
 @click.command()
