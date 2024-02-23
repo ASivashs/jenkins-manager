@@ -28,7 +28,7 @@ def install_jenkins() -> bool:
 
 def installing_jenkins_linux(release: str="lts") -> bool:
     """
-    Specify jenkins version lts or weekly
+    Specify jenkins version lts or weekly with release.
     """
     distr = distro.id()
     if distr in DEB_DISTRO:
