@@ -16,8 +16,9 @@ def install_jenkins(mode: str="lts") -> bool:
         if check_java(os_name):
             install_jenkins_linux(mode)
             return True
+        print("Jenkins require installation Java version 8, 11, 12. Please install Java.")
         logger.error(
-            "Jenkins require installation Java version 8, 11, 12. Please install Java."
+            "Java is not installed in system."
         )
         return False
 
@@ -29,7 +30,7 @@ def install_jenkins(mode: str="lts") -> bool:
         return False
 
 
-def install_jenkins_linux(release: str="lts"):
+def install_jenkins_linux(release: str):
     distr = distro.id()
 
     if distr in DEB_DISTRO:
@@ -39,7 +40,7 @@ def install_jenkins_linux(release: str="lts"):
         rhl_jenkins_installation(release)
 
 
-def debian_jenkins_installation(release: str="lts") -> bool:
+def debian_jenkins_installation(release: str) -> bool:
     try:
         subprocess.run(
             [
@@ -90,7 +91,7 @@ def debian_jenkins_installation(release: str="lts") -> bool:
     return True
     
 
-def rhl_jenkins_installation(release: str="lts") -> bool:
+def rhl_jenkins_installation(release: str) -> bool:
     try:
         subprocess.run(
             [
@@ -161,9 +162,62 @@ def rhl_jenkins_installation(release: str="lts") -> bool:
     return True
 
 
-def windows_jenkins_installation(release: str="lts"):
-    pass
+def windows_jenkins_installation(release: str) -> bool:
+    return False
 
 
-def osx_jenkins_installation(release: str="lts"):
-    pass
+def osx_jenkins_installation(release: str) -> bool:
+    try:
+        homebrew_check = subprocess.run(
+            [
+                'brew', '--version'
+            ],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+    except Exception as err:
+        logger.error(f"Something went wrong in checking Brew installation: \n{err}")
+        return False
+    finally:
+        logger.info("Homebrew already installed in system.")
+
+    if not homebrew_check:
+        logger.error("Homebrew is not installed.")
+        homebrew_yn = str(input("Do you want to install Homebrew? (yes/no)"))
+        if homebrew_yn.lower() == "yes":
+            try:
+                subprocess.run(
+                    [
+                        "/bin/bash", "-c",
+                        "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)",
+                    ]
+                )
+            except Exception as err:
+                logger.error(f"Something went wrong in Homebrew installing: \n{err}")
+                return False
+            logger.info("Homebrew successfully installed.")
+
+    try:
+        subprocess.run(
+            [
+                "brew", "install", "jenkins-lts",
+            ]
+        )
+    except Exception as err:
+        logger.error(f"Something went wrong in Jenkins installing: \n{err}")
+        return False
+    logger.info("Jenkins successfully installed.")
+
+    try:
+        subprocess.run(
+            [
+                "brew", "services", "start", "jenkins-lts",
+            ]
+        )
+    except Exception as err:
+        logger.error(f"Something went wrong in Jenkins running: \n{err}")
+        return False
+    logger.info("Jenkins services successfully running.")
+
+    return True

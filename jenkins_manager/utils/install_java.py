@@ -26,9 +26,6 @@ def check_java(os_name: str) -> bool:
             if java_yn.lower() == "yes":
                 install_java_linux()
                 return True
-
-    if os_name == "OSX":
-        osx_java_installation()
     
     if os_name == "Windows":
         java_path = shutil.which("java")
@@ -177,10 +174,6 @@ def arch_java_installation() -> bool:
     logger.info("Java installed.")
 
     return True
-
-
-def osx_java_installation():
-    pass
 
 
 def windows_java_installation():
