@@ -8,6 +8,8 @@ from .settings import DEB_DISTRO, RHL_DISTRO, SUSE_DISTRO, ARCH_DISTRO
 
 
 def check_java(os_name: str) -> bool:
+    """Checking Host OS and running function for installing Java."""
+
     if os_name == "Linux":
         java_path = subprocess.check_output(
                 [
@@ -46,6 +48,8 @@ def check_java(os_name: str) -> bool:
 
 
 def install_java_linux():
+    """Checking Linux distro. [Debian-based, RHL-based, SUSE-based, ARCH-based]"""
+
     distr = distro.id()
 
     if distr in DEB_DISTRO:
@@ -62,6 +66,12 @@ def install_java_linux():
 
 
 def debian_java_installation() -> bool:
+    """Installing Java in Debian-based systems. This function following next steps:
+        1) Updating Repo list;
+        2) Installing 'default-jre' package;
+        3) Installing 'default-jdk' package;
+    """
+
     try:
         subprocess.run(
             [
@@ -99,6 +109,11 @@ def debian_java_installation() -> bool:
 
 
 def rhl_java_installation() -> bool:
+    """Installing Java in RHL-based systems. This function following next steps:
+        1) Updating Repo list;
+        2) Installing 'java' package;
+    """
+
     try:
         subprocess.run(
             [
@@ -125,6 +140,11 @@ def rhl_java_installation() -> bool:
 
 
 def suse_java_installation() -> bool:
+    """Installing Java in Suse-based systems. This function following next steps:
+        1) Updating Repo list;
+        2) Installing 'java' package;
+    """
+
     try:
         subprocess.run(
             [
@@ -151,6 +171,11 @@ def suse_java_installation() -> bool:
 
 
 def arch_java_installation() -> bool:
+    """Installing Java in Arch-based systems. This function following next steps:
+        1) Updating Repo list;
+        2) Installing 'java' package;
+    """
+
     try:
         subprocess.run(
             [
