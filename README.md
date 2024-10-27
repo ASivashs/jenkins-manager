@@ -20,10 +20,10 @@ jenkins_manager --help
 
 In this script you can specify next parameters:
 
-1) create-users --- Create users in Jenkins (default: user, guest).
-2) install --- Install LTS version of Jenkins with dependencies.
-3) uninstall --- Uninstall Jenkins with files.
-4) verify --- Verifying security policy.
+1) create-users – Create users in Jenkins (default: user, guest).
+2) install – Install LTS version of Jenkins with dependencies.
+3) uninstall – Uninstall Jenkins with files.
+4) verify – Verifying security policy.
 
 Using script:
 
