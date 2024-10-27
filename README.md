@@ -7,13 +7,13 @@ This script provide functions for manage Jenkins application. You can install Je
 To install this script run: 
 
 ```
-pip3 setup.py .
+pip3 install .
 ```
 
 To check working run: 
 
 ```
-jenkins_manager --help
+jenkins-manager --help
 ```
 
 ### Usage
@@ -27,15 +27,15 @@ Using script:
 
 Jenkins install
 ```
-jenkins_manager install --mode [lts, weekly] [OPTIONAL]
+jenkins-manager install --mode [lts, weekly] [OPTIONAL]
 ```
 
 Jenkins uninstall
 ```
-jenkins_manager uninstall
+jenkins-manager uninstall
 ```
 
 Get help
 ```
-jenkins_manager --help
+jenkins-manager --help
 ```

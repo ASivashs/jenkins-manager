@@ -7,5 +7,6 @@ multi_key_dict==2.0.3
 pbr==6.0.0
 python-jenkins==1.8.2
 requests==2.31.0
+setuptools==75.2.0
 six==1.16.0
 urllib3==2.2.0
