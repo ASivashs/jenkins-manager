@@ -20,7 +20,7 @@ jenkins-manager --help
 
 In this script you can specify next parameters:
 
-1) install – Install LTS version of Jenkins with dependencies.
+1) install – Install LTS or weekly version of Jenkins with dependencies.
 2) uninstall – Uninstall Jenkins with files. 
 
 Using script:
