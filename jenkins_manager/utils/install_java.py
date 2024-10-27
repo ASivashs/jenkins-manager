@@ -28,7 +28,7 @@ def check_java(os_name: str) -> bool:
                 return True
 
     if os_name == "OSX":
-        pass
+        osx_java_installation()
     
     if os_name == "Windows":
         java_path = shutil.which("java")
@@ -43,7 +43,7 @@ def check_java(os_name: str) -> bool:
             )
             java_yn = str(input("Do you want to install java? (yes/no)"))
             if java_yn.lower() == "yes":
-                # install_java_windows()
+                windows_java_installation()
                 return True
     return False
 
@@ -179,9 +179,9 @@ def arch_java_installation() -> bool:
     return True
 
 
-def install_java_macos():
+def osx_java_installation():
     pass
 
 
-# def install_java_windows():
-#     install_command = r'msiexec.exe /i "path\to\jenkins.msi" /qn /norestart INSTALLDIR="D:\Jenkins" JAVA_HOME="C:\Program Files\SomeJava" PORT=80 /L*v "path\to\logfile.txt"'
+def windows_java_installation():
+    pass

@@ -1,7 +1,6 @@
 import click
 
-from .utils import install_jenkins, delete_jenkins, verify_users, \
-    create_guest, create_user
+from .utils import install_jenkins, remove_jenkins
 
 
 @click.group()
@@ -10,32 +9,22 @@ def cli():
 
 
 @cli.command()
-def install():
+@click.option(
+    "--mode",
+    default="lts",
+    help="Type `lts` for long time support Jenkins version. If you want to "
+         "install fresh version type `weekly`.",
+)
+def install(mode: str="lts"):
     """
-    Install LTS version of Jenkins with dependencies.
+    Install LTS or Weekly version of Jenkins with dependencies.
     """
-    install_jenkins()
-
-
-@cli.command()
-def create_users():
-    """
-    Create users in Jenkins (default: user, guest).
-    """
-    pass
-
-
-@cli.command()
-def verify():
-    """
-    Verifying security policy.
-    """
-    verify_users()
+    install_jenkins(mode)
 
 
 @cli.command()
 def uninstall():
     """
-    Uninstall Jenkins with files. 
+    Uninstall Jenkins with dependencies files.
     """
-    delete_jenkins()
+    remove_jenkins()

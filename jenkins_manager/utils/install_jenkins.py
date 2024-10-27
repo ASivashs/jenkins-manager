@@ -10,19 +10,22 @@ from .settings import DEB_DISTRO, RHL_DISTRO, \
     LTS_JENKINS_DEB_KEY, LTS_JENKINS_DEB_KEYRINGS_PATH, LTS_JENKINS_DEB_BINARY
 
 
-def install_jenkins() -> bool:
+def install_jenkins(mode: str="lts") -> bool:
     os_name = platform.system()
     if os_name == "Linux":
         if check_java(os_name):
-            install_jenkins_linux("lts")
+            install_jenkins_linux(mode)
             return True
         logger.error(
             "Jenkins require installation Java version 8, 11, 12. Please install Java."
         )
         return False
 
+    if os_name == "OSX":
+        osx_jenkins_installation(mode)
+
     if os_name == "Windows":
-        installing_windows()
+        windows_jenkins_installation(mode)
         return False
 
 
@@ -37,9 +40,6 @@ def install_jenkins_linux(release: str="lts"):
 
 
 def debian_jenkins_installation(release: str="lts") -> bool:
-    """
-    Specify jenkins version lts or weekly with release.
-    """
     try:
         subprocess.run(
             [
@@ -161,9 +161,9 @@ def rhl_jenkins_installation(release: str="lts") -> bool:
     return True
 
 
-def installing_windows():
+def windows_jenkins_installation(release: str="lts"):
     pass
 
 
-def installing_macos():
+def osx_jenkins_installation(release: str="lts"):
     pass

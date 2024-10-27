@@ -19,5 +19,3 @@ JENKINS_GPG = "/etc/apt/sources.list.d/jenkins.list"
 LTS_JENKINS_RPM_KEY = "https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key"
 LTS_JENKINS_RPM_REPO = "https://pkg.jenkins.io/redhat-stable/jenkins.repo"
 LTS_JENKINS_RPM_KEYRINGS_PATH = "/etc/yum.repos.d/jenkins.repo"
-
-diriterdir = ("admin", "user", "guest")
