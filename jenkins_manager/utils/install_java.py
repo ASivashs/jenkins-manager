@@ -11,24 +11,18 @@ def check_java(os_name: str) -> bool:
     """Checking Host OS and running function for installing Java."""
 
     if os_name == "Linux":
-        java_path = subprocess.check_output(
-                [
-                    "which", "java"
-                ]
-            )
+        java_path = subprocess.check_output(["which", "java"])
         if java_path:
             logger.info("Java already installed in the system.")
             return True
-        
+
         if not java_path:
-            logger.warning(
-                "Missing Java package. Please install Java in your system."
-            )
+            logger.warning("Missing Java package. Please install Java in your system.")
             java_yn = str(input("Do you want to install java? (yes/no)"))
             if java_yn.lower() == "yes":
                 install_java_linux()
                 return True
-    
+
     if os_name == "Windows":
         java_path = shutil.which("java")
 
@@ -37,9 +31,7 @@ def check_java(os_name: str) -> bool:
             return True
 
         if not java_path:
-            logger.warning(
-                "Missing Java package. Please install Java in your system."
-            )
+            logger.warning("Missing Java package. Please install Java in your system.")
             java_yn = str(input("Do you want to install java? (yes/no)"))
             if java_yn.lower() == "yes":
                 windows_java_installation()
@@ -67,15 +59,17 @@ def install_java_linux():
 
 def debian_java_installation() -> bool:
     """Installing Java in Debian-based systems. This function following next steps:
-        1) Updating Repo list;
-        2) Installing 'default-jre' package;
-        3) Installing 'default-jdk' package;
+    1) Updating Repo list;
+    2) Installing 'default-jre' package;
+    3) Installing 'default-jdk' package;
     """
 
     try:
         subprocess.run(
             [
-                "sudo", "apt", "update",
+                "sudo",
+                "apt",
+                "update",
             ]
         )
     except Exception as err:
@@ -86,7 +80,10 @@ def debian_java_installation() -> bool:
     try:
         subprocess.run(
             [
-                "sudo", "apt", "install", "default-jre",
+                "sudo",
+                "apt",
+                "install",
+                "default-jre",
             ]
         )
     except Exception as err:
@@ -97,7 +94,10 @@ def debian_java_installation() -> bool:
     try:
         subprocess.run(
             [
-                "sudo", "apt", "install", "default-jdk",
+                "sudo",
+                "apt",
+                "install",
+                "default-jdk",
             ]
         )
     except Exception as err:
@@ -110,14 +110,16 @@ def debian_java_installation() -> bool:
 
 def rhl_java_installation() -> bool:
     """Installing Java in RHL-based systems. This function following next steps:
-        1) Updating Repo list;
-        2) Installing 'java' package;
+    1) Updating Repo list;
+    2) Installing 'java' package;
     """
 
     try:
         subprocess.run(
             [
-                "sudo", "yum", "update",
+                "sudo",
+                "yum",
+                "update",
             ]
         )
     except Exception as err:
@@ -126,11 +128,7 @@ def rhl_java_installation() -> bool:
     logger.info("Repositories list updated.")
 
     try:
-        subprocess.run(
-            [
-                "sudo", "yum", "install", "java"
-            ]
-        )
+        subprocess.run(["sudo", "yum", "install", "java"])
     except Exception as err:
         logger.error(f"Something went wrong in java installation: \n{err}")
         return False
@@ -141,14 +139,16 @@ def rhl_java_installation() -> bool:
 
 def suse_java_installation() -> bool:
     """Installing Java in Suse-based systems. This function following next steps:
-        1) Updating Repo list;
-        2) Installing 'java' package;
+    1) Updating Repo list;
+    2) Installing 'java' package;
     """
 
     try:
         subprocess.run(
             [
-                "sudo", "zypper", "refresh",
+                "sudo",
+                "zypper",
+                "refresh",
             ]
         )
     except Exception as err:
@@ -159,7 +159,11 @@ def suse_java_installation() -> bool:
     try:
         subprocess.run(
             [
-                "sudo", "zypper", "install", "-y", "java-1_8_0-openjdk",
+                "sudo",
+                "zypper",
+                "install",
+                "-y",
+                "java-1_8_0-openjdk",
             ]
         )
     except Exception as err:
@@ -172,14 +176,16 @@ def suse_java_installation() -> bool:
 
 def arch_java_installation() -> bool:
     """Installing Java in Arch-based systems. This function following next steps:
-        1) Updating Repo list;
-        2) Installing 'java' package;
+    1) Updating Repo list;
+    2) Installing 'java' package;
     """
 
     try:
         subprocess.run(
             [
-                "sudo", "pacman", "-Syu",
+                "sudo",
+                "pacman",
+                "-Syu",
             ]
         )
     except Exception as err:
@@ -190,7 +196,11 @@ def arch_java_installation() -> bool:
     try:
         subprocess.run(
             [
-                "sudo", "pacman", "-S", "--noconfirm", "java-openjdk",
+                "sudo",
+                "pacman",
+                "-S",
+                "--noconfirm",
+                "java-openjdk",
             ]
         )
     except Exception as err:
